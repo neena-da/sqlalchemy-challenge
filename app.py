@@ -35,7 +35,7 @@ app = Flask(__name__)
 # Index Route
 @app.route("/")
 def welcome():
-    """List all available api routes."""
+    """Listing all available api routes."""
     return(
         f"Welcome to the Hawaii Climate Analysis API!<br/>"
         f"Available Routes:<br/>"
@@ -104,7 +104,7 @@ def temperature():
         all_tobs.append(prcp_tobs)
     return jsonify(all_tobs)
 
-# Start/End Date API route
+# Start Date API route
 
 @app.route("/api/v1.0/<start>")
 
@@ -128,10 +128,11 @@ def start_date(start):
     session.close()
 
     stat_list = list(np.ravel(stat_results))
-    stat_dict = {'Temps': stat_list}
+    stat_dict = {'Temp stats (min, avg, max)': stat_list}
 
     return jsonify(stat_dict)
 
+# Start and End Date API route
 @app.route("/api/v1.0/<start>/<end>")
 def start_end_date(start, end):
     # Create our session (link) from Python to the DB
@@ -154,10 +155,9 @@ def start_end_date(start, end):
     session.close()
 
     stat_list = list(np.ravel(stat_results))
-    stat_dict = {'Temps': stat_list}
+    stat_dict = {'Temp stats (min, avg, max)': stat_list}
 
     return jsonify(stat_dict)
       
-
 if __name__ == '__main__':
     app.run(debug=True)
