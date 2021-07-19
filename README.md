@@ -1,33 +1,43 @@
 # sqlalchemy-challenge - sql-alchemy assignment - Data Analytics Bootcamp
 
 ### Description
-This assignment aims at analysing and researching the database of employees from the 1980s and 1990s at Pewlett Hackard. The database contains 6 CSV files.
+This assignment aims at analysing the climate of Hawaii.
 
 ### Guide to Repository:
-All the files are available in the folder EmployeeSQL. There is a gitignore file included to protect the database login details.
-The data folder contains the 6 csv files.
-The Output folders contains sql files with the queries, the ERD and the visualizations.
-The Bonus question is solved in the EmployeeSQL_Bonus.ipynb file.
+* The Resources folder contains the hawaii.sqlite database and two csv files - hawaii_measurements.csv and hawaii_stations.csv.
+* The Images folder contains the expected output files for the assignment
+* The Output_Images folder contains the output graphs generated as part of the assignment.
+* climate_starter.ipynb is the jupyter notebook for Step 1 of the assignment -  Climate Analysis and Exploration for Precipitaion and Station Analysis
+* app.py is the python file for Step 2 - Climate App
+* temp_analysis_bonus_1_starter is the jupyter notebook for Bonus - Temperature Analysis I
+* temp_analysis_bonus_2_starter is the jupyter notebook for Bonus - Temperature Analysis II
 
 ### Step a: Setting up in GitHub
-Created the repository and folder EmployeeSQL. Cloned it to the local computer and updated the repository on a regular basis.
+Created the repository sqlalchemy-challenge. Cloned it to the local computer and updated the repository on a regular basis.
 
-### Step 2 : ERD Diagram
-* Sketched the ERD diagram using www.quickdatabasediagrams.com. Created the tables and listed the columns and types along with the primary keys, foreign keys and composie keys. Established the one to many and one to one relations between the tables.Two of the tables dept_emp and dept_manager are set up with composite keys as can be seen in the EmployeeSQL_Enterprise Relation Diagram.png in the Output folder.
+### Step 1 - Climate Analysis and Exploration
+climate_starter.ipynb contains the precipitation analysis and station analysis by connecting to the sqlite database provided in the Resources folder.
 
-### Step 3 : Importing data and Running Queries in Postgres
-* Created database called EmployeeSQL in Postgres
-* Created the 6 tables in the database using the CREATE TABLE statement, in order,  so that all the primary key/ foreign key relations are in alignment. The Create table queries are saved in EmployeeSQL_table_schemata.sql file in the Output folder.
-* Imported data into the 6 tables using import function from the provided csv files.
-* Ran query statements to get the desired outputs which is saved in EmployeeSQL_queries.sql file in the Output folder.
+#### Precipitation Analysis
+Graph is plotted to depict the precipitation data for the last 12 months.
 
+#### Station Analysis
+Histogram is plotted for the most active station to depict the temperature observations for the last 12 months.
 
-### Step 4 : Bonus
-* Created an engine and connection between the Postgres database and jupyter notebook in jupyer notebook.
-* Using pandas, matplotlib and sqlalchemy, created the below visualizations
-	* Histogram plotted for the salary range of employees
-	  Tables used : salary_data
-	* Bar chart plotted for the average salary per job title 
-	  Tables used : employee_data, salary_data, title_data
-* Visualizations are saved in the Output folder.
-* There are some inconsistencies that can be observed from the graphs, for example, verage salary for the senior staff and staff are higher when compared to the average salary of managers. This would make one question the authenticity of the data in the dataset
+### Step 2 : Climate App
+The app is added in app.py. It shows available routes in the home page.
+Each route and the data displayed by them are as following.
+/api/v1.0/precipitation - displays the dates and precipitation values for the last 12 months.
+/api/v1.0/stations - displays all the stations available.
+/api/v1.0/tobs - displays the temperature observations of the most active station for the last year of data.
+/api/v1.0/start - displays the minimum temperature, the average temperature, and the maximum temperature for all dates greater than or equal to the start date.
+or
+/api/v1.0/start/end - displays the minimum temperature, the average temperature, and the maximum temperature for dates between the start and end date inclusive.
+
+### Step 3 : Bonus - Temperature Analysis I
+Compared June and December temperature data using independent t-test. A p value of 3.9025129038616655e-191 was obtained.
+Analysis - Here, the Null Hypothesis is that the two independent samples have identical average values.Since the p-value is less than 0.05, it indicates strong evidence against the null hypothesis and hence the null_hypothesis can be rejected because there is only 5% probability that the null hypothesis is correct. Thus, the difference in mean is statistically significant
+
+### Step 4 : Bonus - Temperature Analysis II
+* Plotted the bar graph for the average temperature for the period between 01-08-2017 and 07-08-2017. The error bar was plotted for the same period for the difference between maximum and minimum temperature.
+* Plotted area graph to show the minimum, average and maximum temperatures for the same day and month in range (01-08-2017 and 07-08-2017) across all years .
